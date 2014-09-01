@@ -12,3 +12,5 @@
 *.zip
 *.rar
 *.tar.gz
+
+credentials.php
