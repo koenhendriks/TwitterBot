@@ -19,7 +19,7 @@ class twitterDB {
         if($db->exists('twitter_apps', 'id='.$config['app_id']))
         {
             if($db->exists('twitter_config', 'app_id='.$config['app_id'])) {
-                $db->query("UPDATE `twitter_config` SET `API_key` = '".$db->DataCheck($config['API_key'])."', `API_secret` = '".$db->DataCheck($config['API_secret'])."', `owner` = '".$db->DataCheck($config['owner'])."', `ownerID` = '".$db->DataCheck($config['ownerID'])."'");
+                $db->query("UPDATE `twitter_config` SET `API_key` = '".$db->DataCheck($config['API_key'])."', `API_secret` = '".$db->DataCheck($config['API_secret'])."', `owner` = '".$db->DataCheck($config['owner'])."', `ownerID` = '".$db->DataCheck($config['ownerID'])."', `token` = '".$db->DataCheck($config['token'])."', `token_secret` = '".$db->DataCheck($config['token_secret'])."'");
             }
             else{
                 $db->query("INSERT INTO `twitter_config` VALUES (NULL,'".$db->DataCheck($config['app_id'])."','".$db->DataCheck($config['API_key'])."','".$db->DataCheck($config['API_secret'])."','".$db->DataCheck($config['owner'])."','".$db->DataCheck($config['ownerID'])."')");
@@ -38,7 +38,7 @@ class twitterDB {
     public function getConfig($app_id)
     {
         $db = new Database();
-        return $db->getRow("SELECT `API_key`,`API_secret`, `owner`, `ownerID` FROM `twitter_config` WHERE `app_id` = '".$db->DataCheck($app_id)."'");
+        return $db->getRow("SELECT `API_key`,`API_secret`, `owner`, `ownerID`,`token`,`token_secret` FROM `twitter_config` WHERE `app_id` = '".$db->DataCheck($app_id)."'");
     }
 
     /**

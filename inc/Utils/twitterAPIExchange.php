@@ -27,6 +27,7 @@ class TwitterAPIExchange
      * Requires the cURL library
      *
      * @param array $settings
+     * @throws Exception
      */
     public function __construct(array $settings)
     {
@@ -54,6 +55,7 @@ class TwitterAPIExchange
      *
      * @param array $array Array of parameters to send to API
      *
+     * @throws Exception
      * @return TwitterAPIExchange Instance of self for method chaining
      */
     public function setPostfields(array $array)
@@ -78,6 +80,7 @@ class TwitterAPIExchange
      *
      * @param string $string Get key and value pairs as string
      *
+     * @throws Exception
      * @return \TwitterAPIExchange Instance of self for method chaining
      */
     public function setGetfield($string)
@@ -122,6 +125,7 @@ class TwitterAPIExchange
      *
      * @param string $url The API url to use. Example: https://api.twitter.com/1.1/search/tweets.json
      * @param string $requestMethod Either POST or GET
+     * @throws Exception
      * @return \TwitterAPIExchange Instance of self for method chaining
      */
     public function buildOauth($url, $requestMethod)
@@ -173,6 +177,7 @@ class TwitterAPIExchange
      *
      * @param boolean $return If true, returns data.
      *
+     * @throws Exception
      * @return string json If $return param is true, returns json data.
      */
     public function performRequest($return = true)

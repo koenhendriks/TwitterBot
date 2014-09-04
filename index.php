@@ -66,7 +66,7 @@ $router = new Router;
 <!-- Scripts -->
 <script src="<?php echo WEBROOT?>js/config.js"></script>
 <script src="<?php echo WEBROOT?>js/jquery-1.11.0.js"></script>
-<script src="<?php echo WEBROOT?>js/ajaxSelect.js"></script>
+<script src="<?php echo WEBROOT?>js/ajax.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo WEBROOT?>js/bootstrap.min.js"></script>

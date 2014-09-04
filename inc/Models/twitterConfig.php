@@ -12,6 +12,8 @@ class twitterConfig {
     public $API_secret;
     public $owner;
     public $ownerID;
+    public $token;
+    public $token_secret;
 
     public function __construct($app_id){
         $tdb = new twitterDB();

@@ -69,6 +69,14 @@ $tdb = new twitterDB();
                             <label for="ownerID">Owner ID</label>
                             <input type="text" class="form-control" name="ownerID" id="ownerID" placeholder="ex: 2738439346">
                         </div>
+                        <div class="form-group">
+                            <label for="token">Token</label>
+                            <input type="text" class="form-control" name="token" id="token" placeholder="ex: 2784139346-r87dvKgRDJwoeFHJER44yGwjwhO4sD9kRBYSiFn">
+                        </div>
+                        <div class="form-group">
+                            <label for="token_secret">Owner ID</label>
+                            <input type="text" class="form-control" name="token_secret" id="token_secret" placeholder="ex: T3Bwq5Kv4E1N7eHqBSTx4RmkJQIHTtqP8F7e13qU8e3rq">
+                        </div>
 
                         <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Save</button>
                     </form>
