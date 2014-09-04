@@ -21,6 +21,9 @@
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
         <li>
+            <a href="<?php ECHO WEBROOT; ?>apps/"><i class="fa fa-th"></i> Apps </a>
+        </li>
+        <li>
             <a href="<?php ECHO WEBROOT; ?>config/"><i class="fa fa-gears"></i> Config </a>
         </li>
     </ul>
@@ -28,7 +31,7 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li class="active">
-                <a href="#"><i class="fa fa-fw fa-dashboard"></i> Status</a>
+                <a href="<?php echo WEBROOT; ?>"><i class="fa fa-fw fa-dashboard"></i> Status</a>
             </li>
         </ul>
     </div>

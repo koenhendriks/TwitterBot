@@ -39,7 +39,12 @@ class Router
         }
 
         if(isset($temp_array[0]))
+        {
             $this->setPage($temp_array[0]);
+            unset($temp_array[0]);
+           $temp_array = array_values($temp_array);
+        }
+
 
 
 

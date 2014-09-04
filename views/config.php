@@ -5,8 +5,9 @@
  * Created by: koen
  * Date: 9/1/14
  */
+
+$tdb = new twitterDB();
 ?>
-<div id="page-wrapper">
 
     <div class="container-fluid">
 
@@ -22,8 +23,7 @@
 
         <?php
         if(isset($_POST['API_key']) && isset($_POST['API_secret'])){
-            $twitterDB = new twitterDB();
-            $twitterDB->saveConfig($_POST);
+            $tdb->saveConfig($_POST);
             ?>
             <div class="row">
                 <div class="col-lg-12">
@@ -42,6 +42,17 @@
             <div class="col-lg-12">
                 <div class="bs-example">
                     <form method="post">
+                        <div class="form-group">
+                            <label for="app_id">Twitter App:</label>
+                            <select class="form-control" name="app_id" id="app_id" required="required" onchange="ajaxSelect(this, 'selectApp.php', {app_id: $(this).val()});">
+                                <option disabled>Choose app</option>
+                                <?php
+                                $apps = $tdb->getApps();
+                                while($app = $apps->fetchRow()): ?>
+                                    <option value="<?php echo $app['id']?>"><?php echo $app['name']?></option>
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="API_key">API Key</label>
                             <input type="text" class="form-control" name="API_key" id="API_key" placeholder="ex: wdzGSawhXKV1lGsdWq0Xa5w8q">
@@ -69,6 +80,3 @@
 
     </div>
     <!-- /.container-fluid -->
-
-</div>
-<!-- /#page-wrapper -->

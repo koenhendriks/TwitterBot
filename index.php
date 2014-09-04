@@ -41,31 +41,32 @@ $router = new Router;
     <![endif]-->
 
 </head>
-<body>
+<body base="<?php echo WEBROOT?>" id="body">
     <div id="wrapper">
         <?php
             include(ROOT.'views/nav.php');
-
-            if($router->getPage() != "")
-            {
-                if(file_exists(ROOT.'views/'.$router->getPage().'.php'))
-                    include(ROOT.'views/'.$router->getPage().'.php');
-                else
-                    include(ROOT.'views/404.php');
-            }else{
-                include(ROOT.'views/page.php');
-            }
-//                if(file_exists(ROOT.'views/'.$router->getPage()))
-//                    include(ROOT.'views/'.$router->getPage().'.php');
-//                else
-//                    include(ROOT.'views/404.php');
-//            }else
-//                include(ROOT.'views/page.php');
         ?>
+
+        <div id="page-wrapper">
+            <?php
+                if($router->getPage() != "")
+                {
+                    if(file_exists(ROOT.'views/'.$router->getPage().'.php'))
+                        include(ROOT.'views/'.$router->getPage().'.php');
+                    else
+                        include(ROOT.'views/404.php');
+                }else{
+                    include(ROOT.'views/page.php');
+                }
+            ?>
+        </div>
+        <!-- Page Wrapper -->
     </div>
 
-<!-- jQuery Version 1.11.0 -->
+<!-- Scripts -->
+<script src="<?php echo WEBROOT?>js/config.js"></script>
 <script src="<?php echo WEBROOT?>js/jquery-1.11.0.js"></script>
+<script src="<?php echo WEBROOT?>js/ajaxSelect.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo WEBROOT?>js/bootstrap.min.js"></script>
