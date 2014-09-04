@@ -14,3 +14,4 @@
 *.tar.gz
 
 credentials.php
+inc/Database/credentials.php
