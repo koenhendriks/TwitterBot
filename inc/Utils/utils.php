@@ -15,10 +15,13 @@ class utils {
      * @param $var
      * @return string
      */
-    static function dump($var){
+    static function dump($var,$exit = 0){
         echo '<pre>';
         var_dump($var);
         echo '</pre>';
+        if($exit){
+            exit();
+        }
     }
 
     /**
