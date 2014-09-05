@@ -65,6 +65,8 @@ $router = new Router;
 
 <!-- Scripts -->
 <script src="<?php echo WEBROOT?>js/config.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script src="<?php echo WEBROOT;?>js/maps.js"></script>
 <script src="<?php echo WEBROOT?>js/jquery-1.11.0.js"></script>
 <script src="<?php echo WEBROOT?>js/ajax.js"></script>
 
