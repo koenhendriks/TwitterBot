@@ -36,6 +36,9 @@
             <li <?php if($router->page == 'search') echo 'class="active'; ?>">
                 <a href="<?php echo WEBROOT; ?>search/"><i class="fa fa-fw fa-search"></i> Search</a>
             </li>
+            <li <?php if($router->page == 'location') echo 'class="active'; ?>">
+                <a href="<?php echo WEBROOT; ?>location/"><i class="fa fa-fw fa-map-marker"></i> Location</a>
+            </li>
         </ul>
         <ui
     </div>
