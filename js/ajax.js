@@ -1,6 +1,14 @@
 /**
  * Created by koen on 9/4/14.
  */
+
+/**
+ * Get config for selected app
+ *
+ * @param self
+ * @param script
+ * @param params
+ */
 function ajaxSelect(self, script, params){
     $.ajax({
         url: WEBROOT+'/ajax/'+script,
@@ -13,14 +21,19 @@ function ajaxSelect(self, script, params){
     });
 }
 
+/**
+ * Get Twitter API results
+ *
+ * @param self
+ * @param script
+ * @param params
+ */
 function twitterSearch(self, script, params){
     if($('.from-ajax').length > 0) {
         $('.from-ajax').fadeOut(400,function(){
             $('.tweet').remove();
-
         });
     }
-
     $('#search-progress').fadeIn();
     $.ajax({
         url: WEBROOT+'/ajax/'+script,
@@ -54,12 +67,20 @@ function twitterSearch(self, script, params){
 
                 var maplocation = new google.maps.LatLng(location[0], location[1]);
                 addMarker(maplocation, icon, title, infowindow);
-
-
             }
         });
     });
-
-
-
 }
+
+function getBotRules(bot_id){
+    $.ajax({
+        url: WEBROOT+'ajax/getSearchRules.php',
+        type: "POST",
+        data: {
+            bot_id: bot_id
+        }
+    }).done(function(data){
+        $('#bot-rules').html(data);
+    });
+}
+

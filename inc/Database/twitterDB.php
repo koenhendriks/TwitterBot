@@ -111,10 +111,40 @@ class twitterDB {
         $db->query("DELETE FROM `twitter_bots`  WHERE `id` = '".$db->DataCheck($bot_id)."'");
     }
 
+    /**
+     * Create a bot
+     *
+     * @param $name
+     * @param $description
+     * @param $app_id
+     * @return result
+     */
     public function createBot($name, $description,$app_id)
     {
         $db = new Database();
-        return $db->query("INSERT INTO `twitter_bots` VALUES (NULL, '".$db->DataCheck($name)."', '".$db->DataCheck($description)."', '".$db->DataCheck($app_id)."', '".time()."')");
+        return $db->query("INSERT INTO `twitter_bots` VALUES (NULL, '".$db->DataCheck($name)."', '".$db->DataCheck($description)."', '".time()."', '".$db->DataCheck($app_id)."')");
+    }
+
+    /**
+     * Get Geolocation bot
+     *
+     * @param $bot_id
+     * @return result
+     */
+    public function getGeoBots($bot_id){
+        $db = new Database();
+        return $db->query("SELECT * FROM `twitter_geo_bot` WHERE `bot_id` = '".$db->DataCheck($bot_id)."'");
+    }
+
+    /**
+     * Get Search bot
+     *
+     * @param $bot_id
+     * @return result
+     */
+    public function getSearchBots($bot_id){
+        $db = new Database();
+        return $db->query("SELECT * FROM `twitter_search_bot` WHERE `bot_id` = '".$db->DataCheck($bot_id)."'");
     }
 
 } 

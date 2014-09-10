@@ -15,15 +15,14 @@ $router = new Router();
 
     <div class="container-fluid">
 
-        <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">
-                    Bots
-                </h1>
+                <h2 class="page-header">
+                    Add bot
+                </h2>
             </div>
         </div>
-        <!-- /.row -->
+
         <?php
             if(isset($_POST['name']) && isset($_POST['description']) && isset($_POST['app_id'])){
                 $tdb->createBot($_POST['name'], $_POST['description'], $_POST['app_id']);
@@ -96,31 +95,75 @@ $router = new Router();
 
         <div class="row">
             <div class="col-lg-12">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Bot name</th>
-                        <th>Description</th>
-                        <th>Linked App</th>
-                        <th>Option</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $bots = $tdb->getBots();
-                    while($bot = $bots->fetchRow()):
-                        ?>
-                        <tr>
-                            <td><?php echo $bot['id'];?></td>
-                            <td><?php echo $bot['name'];?></td>
-                            <td><?php echo $bot['description'];?></td>
-                            <td><a href="<?php echo WEBROOT?>apps/"><?php echo $tdb->getAppName($bot['app_id']);?></a></td>
-                            <td><a href="<?php echo WEBROOT?>bots/delete/<?php echo $bot['id']?>" class="btn btn-danger"><span class="fa fa-trash-o"></span> </a></td>
-                        </tr>
-                    <?php endwhile; ?>
-                    </tbody>
-                </table>
+                <h2 class="page-header">
+                    Manage bots
+                </h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#bots" role="tab" data-toggle="tab">Bots</a></li>
+                    <li><a href="#rules" role="tab" data-toggle="tab">Rules</a></li>
+                </ul>
+
+                <div class="tab-content">
+
+                    <div class="tab-pane fade in active" id="bots">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Bot name</th>
+                                        <th>Description</th>
+                                        <th>Linked App</th>
+                                        <th>Option</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $bots = $tdb->getBots();
+                                    while($bot = $bots->fetchRow()):
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $bot['name'];?></td>
+                                            <td><?php echo $bot['description'];?></td>
+                                            <td><a href="<?php echo WEBROOT?>apps/"><?php echo $tdb->getAppName($bot['app_id']);?></a></td>
+                                            <td><a href="<?php echo WEBROOT?>bots/delete/<?php echo $bot['id']?>" class="btn btn-danger"><span class="fa fa-trash-o"></span> </a></td>
+                                        </tr>
+                                    <?php endwhile; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="rules">
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?php $bots = $tdb->getBots(); ?>
+                                <div class="form-group">
+                                    <label for="app_id">Twitter Bot:</label><br/>
+                                    <select class="form-control" name="app_id" id="app_id" required="required" onchange="getBotRules($(this).val());">
+                                        <option value="" disabled>Choose a bot</option>
+                                        <?php while($bot = $bots->fetchRow()): ?>
+                                                <option value="<?php echo $bot['id']?>"><?php echo $bot['name']?></option>
+                                        <?php endwhile; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="from-ajax" id="bot-rules"></div>
+
+
+                    </div>
+
+                </div>
+
             </div>
         </div>
 

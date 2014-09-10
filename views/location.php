@@ -53,7 +53,4 @@ $tdb = new twitterDB();
             </div>
         </div>
     </div>
-
-
 </div>
-

@@ -72,5 +72,10 @@ $router = new Router;
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo WEBROOT?>js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    if($('#gmaps').length > 0)
+        google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 </body>
 </html>
