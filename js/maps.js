@@ -27,7 +27,6 @@ function initialize() {
             animation: google.maps.Animation.DROP
         });
     });
-
 }
 
 // Add a marker to the map and push to the array.
