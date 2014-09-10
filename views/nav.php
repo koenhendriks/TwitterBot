@@ -30,8 +30,8 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-            <li <?php if($router->page == '') echo 'class="active'; ?>">
-                <a href="<?php echo WEBROOT; ?>"><i class="fa fa-fw fa-dashboard"></i> Status</a>
+            <li <?php if($router->page == '' || $router->page == 'bots') echo 'class="active'; ?>">
+                <a href="<?php echo WEBROOT; ?>"><i class="fa fa-fw fa-dashboard"></i> Bots</a>
             </li>
             <li <?php if($router->page == 'search') echo 'class="active'; ?>">
                 <a href="<?php echo WEBROOT; ?>search/"><i class="fa fa-fw fa-search"></i> Search</a>

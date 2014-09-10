@@ -42,7 +42,20 @@ class twitterDB {
     }
 
     /**
+     * Get an app name by its id
+     *
+     * @param $app_id
+     * @return mixed
+     */
+    public function getAppName($app_id)
+    {
+        $db = new Database();
+        return $db->getOne("SELECT `name` FROM `twitter_apps` WHERE `id` = '".$db->DataCheck($app_id)."'");
+    }
+
+    /**
      * Get all created apps
+     *
      * @return result
      */
     public function getApps(){
@@ -50,17 +63,58 @@ class twitterDB {
         return $db->query("SELECT * FROM `twitter_apps`");
     }
 
+    /**
+     * Create a new app
+     *
+     * @param $name
+     * @param $description
+     * @return result
+     */
     public function createApp($name, $description)
     {
         $db = new Database();
         return $db->query("INSERT INTO `twitter_apps` VALUES (NULL, '".$db->DataCheck($name)."', '".$db->DataCheck($description)."')");
     }
 
+    /**
+     * Delete an app with the bots and config
+     *
+     * @param $app_id
+     */
     public function deleteApp($app_id)
     {
         $db = new Database();
         $db->query("DELETE FROM `twitter_config` WHERE `app_id` = '".$db->DataCheck($app_id)."'");
+        $db->query("DELETE FROM `twitter_bots`  WHERE `app_id` = '".$db->DataCheck($app_id)."'");
         $db->query("DELETE FROM `twitter_apps`  WHERE `id` = '".$db->DataCheck($app_id)."'");
+    }
+
+    /**
+     * Get all twitter bots from database
+     *
+     * @return result
+     */
+    public function getBots(){
+        $db = new Database();
+        return $db->query("SELECT * FROM `twitter_bots`");
+    }
+
+    /**
+     * Delete an bot
+     *
+     * @param $bot_id
+     * @internal param $app_id
+     */
+    public function deleteBot($bot_id)
+    {
+        $db = new Database();
+        $db->query("DELETE FROM `twitter_bots`  WHERE `id` = '".$db->DataCheck($bot_id)."'");
+    }
+
+    public function createBot($name, $description,$app_id)
+    {
+        $db = new Database();
+        return $db->query("INSERT INTO `twitter_bots` VALUES (NULL, '".$db->DataCheck($name)."', '".$db->DataCheck($description)."', '".$db->DataCheck($app_id)."', '".time()."')");
     }
 
 } 

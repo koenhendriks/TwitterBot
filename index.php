@@ -56,7 +56,7 @@ $router = new Router;
                     else
                         include(ROOT.'views/404.php');
                 }else{
-                    include(ROOT.'views/page.php');
+                    include(ROOT.'views/bots.php');
                 }
             ?>
         </div>

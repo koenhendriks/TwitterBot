@@ -39,19 +39,35 @@ $router = new Router();
         </div>
     <?php
     }
-
     if(is_numeric($router->getValue('delete'))){
-        $tdb->deleteApp($router->getValue('delete'));
-        ?>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <i class="fa fa-check"></i>  <strong>Application Deleted!</strong>
+        if(is_numeric($router->getValue('confirm'))){
+            $tdb->deleteApp($router->getValue('delete'));
+            ?>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <i class="fa fa-check"></i>  <strong>Application Deleted!</strong>
+                    </div>
                 </div>
             </div>
-        </div>
         <?php
+        }else{
+            ?>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="alert alert-warning">
+                        <p class="pull-right">
+                            <a href="<?php echo WEBROOT?>apps/delete/<?php echo $router->getValue('delete'); ?>/confirm/1" class="btn btn-danger"><i class="fa fa-trash-o"></i> Yes</a>
+                            <a href="<?php echo WEBROOT?>apps/" class="btn btn-default"><i class="fa fa-times"></i> No</a>
+                        </p>
+                        <p class="pull-left">Are you sure you want to delete this application?</p><br/>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
     }
     ?>
 
