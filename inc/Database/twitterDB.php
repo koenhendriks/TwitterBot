@@ -147,4 +147,32 @@ class twitterDB {
         return $db->query("SELECT * FROM `twitter_search_bot` WHERE `bot_id` = '".$db->DataCheck($bot_id)."'");
     }
 
+    /**
+     * Get Bot name by id
+     *
+     * @param $bot_id
+     * @return string $name
+     */
+    public function getBotName($bot_id) {
+        $db = new Database();
+        return $db->getOne("SELECT `name` FROM `twitter_bots` WHERE `id` = '".$bot_id."'");
+    }
+
+    public function getResponses(){
+        $db = new Database();
+        return $db->query("SELECT * FROM `twitter_responses`");
+    }
+
+    /**
+     * Get responses for specific bot
+     *
+     * @param $bot_id
+     * @return result
+     */
+    public function getBotResponses($bot_id)
+    {
+        $db = new Database();
+        return $db->query("SELECT * FROM `twitter_responses` WHERE `bot_id` = '".$db->DataCheck($bot_id)."'");
+    }
+
 } 

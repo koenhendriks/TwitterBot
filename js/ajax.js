@@ -72,6 +72,18 @@ function twitterSearch(self, script, params){
     });
 }
 
+function getBotResponses(bot_id){
+    $.ajax({
+        url: WEBROOT+'ajax/getBotResponses.php',
+        type: "POST",
+        data: {
+            bot_id: bot_id
+        }
+    }).done(function(data){
+        $('#ajax-responses').html(data);
+    });
+}
+
 function getBotRules(bot_id){
     $.ajax({
         url: WEBROOT+'ajax/getSearchRules.php',

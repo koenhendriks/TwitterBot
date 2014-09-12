@@ -107,6 +107,7 @@ $router = new Router();
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="active"><a href="#bots" role="tab" data-toggle="tab">Bots</a></li>
                     <li><a href="#rules" role="tab" data-toggle="tab">Rules</a></li>
+                    <li><a href="#responses" role="tab" data-toggle="tab">Responses</a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -142,7 +143,7 @@ $router = new Router();
                     </div>
 
                     <div class="tab-pane fade" id="rules">
-
+                        <br/>
                         <div class="row">
                             <div class="col-lg-12">
                                 <?php $bots = $tdb->getBots(); ?>
@@ -158,6 +159,48 @@ $router = new Router();
                             </div>
                         </div>
                         <div class="from-ajax" id="bot-rules"></div>
+
+
+                    </div>
+
+                    <div class="tab-pane fade" id="responses">
+                        <br/>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?php $bots = $tdb->getBots(); ?>
+                                <div class="form-group">
+                                    <label for="app_id">Twitter Bot:</label><br/>
+                                    <select class="form-control" name="app_id" id="app_id" required="required" onchange="getBotResponses($(this).val());">
+                                        <option value="all">All bots</option>
+                                        <?php while($bot = $bots->fetchRow()): ?>
+                                            <option value="<?php echo $bot['id']?>"><?php echo $bot['name']?></option>
+                                        <?php endwhile; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="from-ajax" id="ajax-responses">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h2>
+                                        Responses
+                                    </h2>
+                                </div>
+                            </div>
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>All Responses</th>
+                                    <th>Bot</th>
+                                </tr>
+                                <?php $responses = $tdb->getResponses(); ?>
+                                <?php while($response = $responses->fetchRow()): ?>
+                                    <tr>
+                                        <td><?php echo $response['response']; ?></td>
+                                        <td><?php echo $tdb->getBotName($response['bot_id']); ?></td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </table>
+                        </div>
 
 
                     </div>
