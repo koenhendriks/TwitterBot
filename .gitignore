@@ -13,5 +13,5 @@
 *.rar
 *.tar.gz
 
-credentials.php
-inc/Database/credentials.php
+
+#inc/Database/credentials.php
