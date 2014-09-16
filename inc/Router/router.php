@@ -45,9 +45,6 @@ class Router
            $temp_array = array_values($temp_array);
         }
 
-
-
-
         $request_array = array();
         foreach($temp_array as $key => $value){
             if($key % 2 == 0)
@@ -59,7 +56,6 @@ class Router
             }
         }
         $this->requests = $request_array;
-
     }
 
     /**

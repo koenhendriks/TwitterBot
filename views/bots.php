@@ -8,7 +8,6 @@
 
 $tdb = new twitterDB();
 $router = new Router();
-
 ?>
 
 <div id="page-wrapper">
