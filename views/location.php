@@ -31,6 +31,11 @@ $tdb = new twitterDB();
                     <?php endwhile; ?>
                 </select>
             </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="hide-RT" id="hide-RT"> No retweets
+                </label>
+            </div>
             <div class="form-group">
                 <div id="gmaps" style="height: 400px;"></div>
             </div>

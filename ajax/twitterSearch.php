@@ -9,7 +9,6 @@ include('../bootstrap.php');
 
 $tdb = new twitterDB();
 $config = new twitterConfig($_POST['app_id']);
-
 $settings = array(
     'oauth_access_token' => $config->token,
     'oauth_access_token_secret' => $config->token_secret,
@@ -17,8 +16,13 @@ $settings = array(
     'consumer_secret' => $config->API_secret,
 );
 
+$search = $_POST['search'];
+
+if($_POST['hideRT'] == 'true')
+    $search .= ' -RT';
+
 $url = 'https://api.twitter.com/1.1/search/tweets.json';
-$getfield = '?q='.$_POST['search'];
+$getfield = '?q='.urlencode($search);
 $requestMethod = 'GET';
 
 $twitter = new TwitterAPIExchange($settings);
@@ -32,31 +36,29 @@ if(isset($response->statuses))
     if(count($response->statuses) > 0){
         $tweets = $response->statuses;
         foreach($tweets as $tweet){
-            if(substr($tweet->text, 0,2) != 'RT') {
-                $date = date('H:i d-m-Y', strtotime($tweet->created_at));
-                ?>
-                <div class="tweet" data-screen-name="<?php echo $tweet->user->screen_name?>" data-tweet="<?php echo $tweet->text?>" data-location="<?php echo $tweet->geo->coordinates[0]; ?>,<?php echo $tweet->geo->coordinates[1]; ?>" data-user-image="<?php echo $tweet->user->profile_image_url; ?>">
-                    <div class="row from-ajax">
-                        <div class="col-lg-1">
-                            <b>Tweet:</b>
-                        </div>
-                        <div class="col-lg-11">
-                            <b><a href="http://twitter.com/<?php echo $tweet->user->screen_name?>"><?php echo $tweet->user->screen_name ?></a></b> - <small><?php echo $date ?></small>
-                        </div>
+            $date = date('H:i d-m-Y', strtotime($tweet->created_at));
+            ?>
+            <div class="tweet" data-screen-name="<?php echo $tweet->user->screen_name?>" data-tweet="<?php echo $tweet->text?>" data-location="<?php if(isset($tweet->geo->coordinates[0])){ echo $tweet->geo->coordinates[0].' , '.$tweet->geo->coordinates[1]; }?>" data-user-image="<?php echo $tweet->user->profile_image_url; ?>">
+                <div class="row from-ajax">
+                    <div class="col-lg-1">
+                        <b>Tweet:</b>
                     </div>
-                    <div class="row from-ajax">
-                        <div class="col-lg-1">
-                            <a href="http://twitter.com/<?php echo $tweet->user->screen_name?>">
-                                <img src="<?php echo $tweet->user->profile_image_url;?>" />
-                            </a>
-                        </div>
-                        <div class="col-lg-9 well">
-                            <b><?php echo $tweet->text?></b>
-                        </div>
+                    <div class="col-lg-11">
+                        <b><a href="http://twitter.com/<?php echo $tweet->user->screen_name?>"><?php echo $tweet->user->screen_name ?></a></b> - <small><?php echo $date ?></small>
                     </div>
                 </div>
-            <?php
-            }
+                <div class="row from-ajax">
+                    <div class="col-lg-1">
+                        <a href="http://twitter.com/<?php echo $tweet->user->screen_name?>">
+                            <img src="<?php echo $tweet->user->profile_image_url;?>" />
+                        </a>
+                    </div>
+                    <div class="col-lg-9 well">
+                        <b><?php echo $tweet->text?></b>
+                    </div>
+                </div>
+            </div>
+        <?php
         }
     }
 }else{

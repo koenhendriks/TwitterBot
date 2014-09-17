@@ -29,6 +29,8 @@ function ajaxSelect(self, script, params){
  * @param params
  */
 function twitterSearch(self, script, params){
+    params["hideRT"] = $('#hide-RT').is(':checked');
+
     if($('.from-ajax').length > 0) {
         $('.from-ajax').fadeOut(400,function(){
             $('.tweet').remove();
@@ -72,6 +74,11 @@ function twitterSearch(self, script, params){
     });
 }
 
+/**
+ * Get responses for a specific bot
+ *
+ * @param bot_id
+ */
 function getBotResponses(bot_id){
     $.ajax({
         url: WEBROOT+'ajax/getBotResponses.php',
@@ -84,6 +91,11 @@ function getBotResponses(bot_id){
     });
 }
 
+/**
+ * Get Rules for a specific bot
+ *
+ * @param bot_id
+ */
 function getBotRules(bot_id){
     $.ajax({
         url: WEBROOT+'ajax/getSearchRules.php',

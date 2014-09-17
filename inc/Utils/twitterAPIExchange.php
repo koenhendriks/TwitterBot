@@ -5,7 +5,7 @@
  * PHP version 5.3.10
  *
  * @package  Twitter-API-PHP
- * @author   James Mallison <me@j7mbo.co.uk>
+ * @author   James Mallison <me@j7mbo.co.uk>, altered by Koen Hendriks <info@koenhendriks.com>
  * @license  MIT License
  * @link     http://github.com/j7mbo/twitter-api-php
  */
@@ -261,6 +261,13 @@ class TwitterAPIExchange
 
         $return .= implode(', ', $values);
         return $return;
+    }
+
+    public function isRetweet($tweet){
+        if(substr($tweet->text, 0,2) == 'RT')
+            return true;
+        else
+            return false;
     }
 
 }

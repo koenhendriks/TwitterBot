@@ -20,6 +20,7 @@ $tdb = new twitterDB();
 
     <div class="row">
         <div class="col-lg-12">
+            <form class="form-inline" role="form" onsubmit="return false;">
                 <div class="form-group">
                     <label for="app_id">Twitter App:</label>
                     <select class="form-control" name="app_id" id="app_id" required="required" onchange="ajaxSelect(this, 'selectApp.php', {app_id: $(this).val()});">
@@ -31,11 +32,18 @@ $tdb = new twitterDB();
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="q" id="q" placeholder="Search string" class="form-control">
+                    <input type="text" size="45" name="q" id="q" placeholder="Search string" class="form-control">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="hide-RT" id="hide-RT"> No retweets
+                    </label>
                 </div>
                 <div class="form-group">
                     <button class="btn" onclick="twitterSearch(this,'twitterSearch.php', {search: $('#q').val(), app_id: $('#app_id').val()})">Search</button>
                 </div>
+            </form>
+
         </div>
     </div>
 
