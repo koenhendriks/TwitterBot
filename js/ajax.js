@@ -31,6 +31,8 @@ function ajaxSelect(self, script, params){
 function twitterSearch(self, script, params){
     params["hideRT"] = $('#hide-RT').is(':checked');
 
+    $('#temp-results').fadeOut();
+
     if($('.from-ajax').length > 0) {
         $('.from-ajax').fadeOut(400,function(){
             $('.tweet').remove();
