@@ -14,11 +14,21 @@ $router = new Router();
 
     <div class="container-fluid">
 
+    <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Bots
+                </h1>
+                <p>Here you can manage and add your Twitter bots. A Twitter bot needs to be linked to an existing Twitter app with a working API.</p>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="page-header">
                     Add bot
                 </h2>
+                <p>Choose your Twitter app and add a name and desription to create a new bot.</p>
             </div>
         </div>
 
@@ -34,40 +44,7 @@ $router = new Router();
                         </div>
                     </div>
                 </div>
-        <?php
-        }
-            if(is_numeric($router->getValue('delete'))){
-                if(is_numeric($router->getValue('confirm'))){
-                    $tdb->deleteBot($router->getValue('delete'));
-                    ?>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="alert alert-success alert-dismissable">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <i class="fa fa-check"></i>  <strong>Bot Deleted!</strong>
-                                </div>
-                            </div>
-                        </div>
-                    <?php
-                }else{
-                    ?>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="alert alert-warning">
-                                <p class="pull-right">
-                                    <a href="<?php echo WEBROOT?>bots/delete/<?php echo $router->getValue('delete'); ?>/confirm/1" class="btn btn-danger"><i class="fa fa-trash-o"></i> Yes</a>
-                                    <a href="<?php echo WEBROOT?>bots/" class="btn btn-default"><i class="fa fa-times"></i> No</a>
-                                </p>
-                                <p class="pull-left">Are you sure you want to delete this bot?</p><br/>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                <?php
-                }
-            }
-        ?>
-
+        <?php } ?>
         <div class="row">
             <div class="col-lg-12">
                 <form class="form-inline" role="form" method="post">
@@ -87,7 +64,7 @@ $router = new Router();
                     <div class="form-group">
                         <input type="text" class="form-control" id="description" name="description" placeholder="Description" size="60">
                     </div>
-                    <button type="submit" class="btn btn-default">Create app</button>
+                    <button type="submit" class="btn btn-default">Create bot</button>
                 </form>
             </div>
         </div>
@@ -99,6 +76,39 @@ $router = new Router();
                 </h2>
             </div>
         </div>
+
+        <?php
+        if(is_numeric($router->getValue('delete'))){
+            if(is_numeric($router->getValue('confirm'))){
+                $tdb->deleteBot($router->getValue('delete'));
+                ?>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <i class="fa fa-check"></i>  <strong>Bot Deleted!</strong>
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }else{
+                ?>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-warning">
+                            <p class="pull-right">
+                                <a href="<?php echo WEBROOT?>bots/delete/<?php echo $router->getValue('delete'); ?>/confirm/1" class="btn btn-danger"><i class="fa fa-trash-o"></i> Yes</a>
+                                <a href="<?php echo WEBROOT?>bots/" class="btn btn-default"><i class="fa fa-times"></i> No</a>
+                            </p>
+                            <p class="pull-left">Are you sure you want to delete this bot?</p><br/>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }
+        }
+        ?>
 
         <div class="row">
             <div class="col-lg-12">
@@ -112,6 +122,12 @@ $router = new Router();
                 <div class="tab-content">
 
                     <div class="tab-pane fade in active" id="bots">
+                        <br/>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p>This are all the created bots.</p>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <table class="table table-striped">
@@ -145,6 +161,11 @@ $router = new Router();
                         <br/>
                         <div class="row">
                             <div class="col-lg-12">
+                                <p>Choose a bot and manage the rules that apply for a bot.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
                                 <?php $bots = $tdb->getBots(); ?>
                                 <div class="form-group">
                                     <label for="app_id">Twitter Bot:</label><br/>
@@ -164,6 +185,11 @@ $router = new Router();
 
                     <div class="tab-pane fade" id="responses">
                         <br/>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p>This are the responses for your bot</p>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <?php $bots = $tdb->getBots(); ?>

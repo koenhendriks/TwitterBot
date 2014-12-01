@@ -14,6 +14,7 @@ $tdb = new twitterDB();
             <h1 class="page-header">
                 Search
             </h1>
+            <p>Choose your Twitter app below and type a desired search string to find tweets.</p>
         </div>
     </div>
     <!-- /.row -->

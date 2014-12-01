@@ -15,6 +15,7 @@ $tdb = new twitterDB();
             <h1 class="page-header">
                 Location Search
             </h1>
+            <p>Choose your Twitter app below and click on the map to find tweets nearby.</p>
         </div>
     </div>
     <!-- /.row -->
