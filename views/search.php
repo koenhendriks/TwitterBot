@@ -56,6 +56,12 @@ $tdb = new twitterDB();
         </div>
     </div>
 
+    <div class="row" id="temp-results">
+        <div class="col-lg-12">
+            <p><i>Results will show here.</i></p>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-lg-12">
             <div class="progress" style="display:none;" id="search-progress">
